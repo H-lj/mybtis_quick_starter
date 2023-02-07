@@ -1,8 +1,8 @@
 <configuration>
     <!--数据库配置信息-->
     <dataSource>
-        <property name="driverClass" value="com.mysql.jdbc.Driver" ></property>
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/test_user?serverTimezone=GMT" ></property>
+        <property name="driverClass" value="com.mysql.cj.jdbc.Driver" ></property>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/test_user" ></property>
         <property name="username" value="root" ></property>
         <property name="password" value="@root1234" ></property>
     </dataSource>
