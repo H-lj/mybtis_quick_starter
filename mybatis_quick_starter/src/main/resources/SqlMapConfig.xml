@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--加载外部properties文件-->
+    <properties resource="jdbc.properties"></properties>
+    <settings>
+        <!-- 打印查询语句 -->
+        <setting name="logImpl" value="LOG4J" />
+    </settings>
+    
+    <!--给实体类的全限定类名取别名-->
+    <typeAliases>
+        <!--单独的实体取别名-->
+<!--        <typeAlias type="com.self.project.entity.User" alias="user"></typeAlias>-->
+
+        <!--包下所有的实体取别名：别名不区分大小写-->
+        <package name="com.self.project.entity"/>
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="UserMapper.xml"></mapper>
+        <package name="com.self.mapper"/>
+    </mappers>
+</configuration>
