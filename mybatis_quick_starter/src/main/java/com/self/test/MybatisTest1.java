@@ -1,5 +1,7 @@
 package com.self.test;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.self.mapper.IUserMapper;
 import com.self.project.entity.User;
 import org.apache.ibatis.io.Resources;
@@ -54,6 +56,21 @@ public class MybatisTest1 {
         User user = new User();
         user.setId(1);
         userMapper.remove(user);
+    }
+
+    @Test
+    public void testPageHelper() throws IOException {
+        PageHelper.startPage(3,10);
+        List<User> users = userMapper.findAll(new User());
+        for (User user:users) {
+            System.out.println(user.toString());
+        }
+        PageInfo<User> userPageInfo = new PageInfo<>(users);
+
+        System.out.println("===========");
+        System.out.println(userPageInfo);
+        System.out.println("===========");
+
     }
 
 //    @After

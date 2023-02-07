@@ -58,6 +58,7 @@ public class CacheTest {
 
         User user1 = userMapper1.selectById(2);
         sqlSession1.close();
+
         User user = new User();
         user.setId(2);
         user.setUserName("zhangSan");
