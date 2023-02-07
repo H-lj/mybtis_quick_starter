@@ -1,15 +1,14 @@
 package com.self.mapper;
 
 import com.self.project.entity.User;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.cache.Cache;
+import org.mybatis.caches.redis.RedisCache;
 
 import java.io.IOException;
 import java.util.List;
-
-public interface IUserMapper {
+@CacheNamespace(implementation = RedisCache.class) //开启二级缓存
+public interface IUserMapper extends Cache {
     @Select("select * from user")
     public List<User> findAll(User user) throws IOException;
     @Insert("insert into user values(#{id},#{username})")

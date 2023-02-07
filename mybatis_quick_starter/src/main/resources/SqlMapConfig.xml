@@ -4,9 +4,9 @@
 <configuration>
     <!--加载外部properties文件-->
     <properties resource="jdbc.properties"></properties>
+    <!--开启二级缓存  -->
     <settings>
-        <!-- 打印查询语句 -->
-        <setting name="logImpl" value="LOG4J" />
+        <setting name="cacheEnabled" value="true"/>
     </settings>
     
     <!--给实体类的全限定类名取别名-->
