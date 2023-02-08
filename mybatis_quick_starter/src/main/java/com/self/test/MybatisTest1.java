@@ -3,6 +3,7 @@ package com.self.test;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.self.mapper.IUserMapper;
+import com.self.mapper.UserMapper;
 import com.self.project.entity.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -19,6 +20,7 @@ public class MybatisTest1 {
 
     private IUserMapper userMapper;
     private SqlSession sqlSession;
+
     @Before
     public void before() throws IOException {
         InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
@@ -30,7 +32,7 @@ public class MybatisTest1 {
     @Test
     public void testFindAll() throws IOException {
         List<User> users = userMapper.findAll(new User());
-        for (User user:users) {
+        for (User user : users) {
             System.out.println(user.toString());
         }
     }
@@ -60,9 +62,9 @@ public class MybatisTest1 {
 
     @Test
     public void testPageHelper() throws IOException {
-        PageHelper.startPage(3,10);
+        PageHelper.startPage(3, 10);
         List<User> users = userMapper.findAll(new User());
-        for (User user:users) {
+        for (User user : users) {
             System.out.println(user.toString());
         }
         PageInfo<User> userPageInfo = new PageInfo<>(users);
@@ -71,6 +73,15 @@ public class MybatisTest1 {
         System.out.println(userPageInfo);
         System.out.println("===========");
 
+    }
+
+    @Test
+    public void testTkMapper() {
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        List<User> users = mapper.select(new User());
+        for (User user : users) {
+            System.out.println(user.toString());
+        }
     }
 
 //    @After

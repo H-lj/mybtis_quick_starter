@@ -8,6 +8,7 @@ import org.mybatis.caches.redis.RedisCache;
 import java.io.IOException;
 import java.util.List;
 //@CacheNamespace(implementation = RedisCache.class) //开启二级缓存
+@CacheNamespace
 public interface IUserMapper extends Cache {
     @Select("select * from user")
     public List<User> findAll(User user) throws IOException;
